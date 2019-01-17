@@ -7,52 +7,52 @@ app.config["DEBUG"] = True
 
 def dict_factory(cursor, row): 
 	"""Converts rows that need to be retrieved into a dictionary object. This function replaces the existing row_factory attribute of the sqlite3 connection object.z"""
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
+	d = {}
+	for idx, col in enumerate(cursor.description):
+		d[col[0]] = row[idx]
+	return d
 
 @app.route('/', methods=['GET'])
 def home():
 	"""This is the home page of the API."""
-    return "<h1>Shopify Backend assignment</h1><p>This site is a prototype for shopping cart API.</p>"
+	return "<h1>Shopify Backend assignment</h1><p>This site is a prototype for shopping cart API.</p>"
 
 
 @app.route('/v1/items/all', methods=['GET']) 
 def api_all():
 	"""Displays all the products present in the database."""
-    conn = sqlite3.connect('Shopify_products.db')
-    conn.row_factory = dict_factory
-    cur = conn.cursor()
-    all_products = cur.execute('SELECT * FROM products;').fetchall()
-    return jsonify(all_products)
+	conn = sqlite3.connect('Shopify_products.db')
+	conn.row_factory = dict_factory
+	cur = conn.cursor()
+	all_products = cur.execute('SELECT * FROM products;').fetchall()
+	return jsonify(all_products)
 
 @app.route('/v1/items', methods=['GET'])
 def api_search():
 	"""Search for products on the basis of 'id' or 'title' values.Eg: Use /v1/items?id=3 to search for the product whose id equals to 3."""
-    if 'id' in request.args:
-        id = int(request.args['id'])
-        flag_id=1
-        flag_title=0
-    elif 'title' in request.args:
-    	title = request.args['title']
-    	flag_title=1
-    	flag_id=0
-    else:
-        return "Error: No id/title field provided. Please specify an id/title."
+	if 'id' in request.args:
+		id = int(request.args['id'])
+		flag_id=1
+		flag_title=0
+	elif 'title' in request.args:
+		title = request.args['title']
+		flag_title=1
+		flag_id=0
+	else:
+		return "Error: No id/title field provided. Please specify an id/title."
 
-    conn = sqlite3.connect('Shopify_products.db')
-    conn.row_factory = dict_factory
-    cur = conn.cursor()
-    # Create an empty list for our results
-    if flag_id==1:
-    	t = (id,)
-    	products = cur.execute('SELECT * FROM products WHERE id=? ',t).fetchone()
-    	return jsonify(products)
-    else:
-    	t = (title,)
-    	products = cur.execute('SELECT * FROM products WHERE title=? ',t).fetchone()
-    	return jsonify(products)
+		conn = sqlite3.connect('Shopify_products.db')
+		conn.row_factory = dict_factory
+		cur = conn.cursor()
+		# Create an empty list for our results
+	if flag_id==1:
+		t = (id,)
+		products = cur.execute('SELECT * FROM products WHERE id=? ',t).fetchone()
+		return jsonify(products)
+	else:
+		t = (title,)
+		products = cur.execute('SELECT * FROM products WHERE title=? ',t).fetchone()
+		return jsonify(products)
 
 @app.route('/v1/cart/add',methods=['GET'])
 def api_add_cart():
@@ -124,9 +124,7 @@ def api_confirm_cart():
 	cur.execute('DELETE FROM cart;')
 	conn.commit()
 	return jsonify(p)
-	#return "Cart has been purchased!Thank you for shopping"
 
 
 
 app.run()
-
