@@ -8,6 +8,9 @@ The shopping cart has the following functionalities:
   - Display all the products added to the shopping cart
   - Complete the purchase of all the items in the shopping cart(Subsequently reduce the inventory count of those products from the main database).
   
+
+### API routes(Methods used:[GET]):
+
 |Route|Description|
 |------|------|
 |/| Home page of the API|
