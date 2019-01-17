@@ -24,7 +24,7 @@ def api_all():
 	conn = sqlite3.connect('Shopify_products.db')
 	conn.row_factory = dict_factory
 	cur = conn.cursor()
-	all_products = cur.execute('SELECT * FROM products;').fetchall()
+	all_products = cur.execute('SELECT * FROM products WHERE inventory_count>0;').fetchall()
 	return jsonify(all_products)
 
 @app.route('/v1/items', methods=['GET'])
