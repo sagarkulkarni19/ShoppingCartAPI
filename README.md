@@ -1,5 +1,5 @@
 # ShoppingCartAPI
-A shopping cart API using Python Flask framework.
+A simple and easy to use shopping cart API developed using Python Flask framework.
 The shopping cart has the following functionalities:
   - Display all products available(with inventory count)
   - Search for a particular product with id or title of product.
