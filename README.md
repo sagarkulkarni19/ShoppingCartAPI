@@ -21,7 +21,7 @@ The shopping cart has the following functionalities:
 |/v1/cart/delete?id=value|Delete products from the cart based on the id provided|
 |/v1/cart/confirm|Complete the purchase of the current cart(Decreses the inventory count of the products)|
   
-##Steps to interact with the API
+## Steps to interact with the API
   - Install python 3.6
   - Install python flask 
   - Clone the repository(or copy the files to a folder in your system)
