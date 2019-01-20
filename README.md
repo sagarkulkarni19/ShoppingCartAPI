@@ -29,4 +29,4 @@ The shopping cart has the following functionalities:
   - Run api_final.py
   - Use url http://127.0.0.1:5000/ and the above table to interact with the API.
   
-Note: API secure(partly) against sql injection attacks while querying.( By the usage of a placeholder '?' in the query instead of a '%s' string formating syntax which is vulnerable against sql-injection attacks).
+Note: API secure(partly) against sql injection attacks while querying.( By the usage of a placeholder '?' in the query instead of a '%s' string formatting syntax which is vulnerable against sql-injection attacks).
